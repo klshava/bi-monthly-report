@@ -5,10 +5,14 @@
 <title>BI Team Monthly Update - July 2026</title>
 <style>
   :root {
-    --purple: #5620AD;
-    --purple-dark: #3F1580;
-    --yellow: #FFE800;
+    /* Dabble brand palette */
+    --purple: #4D23A4;       /* Cosmic Purple - main background */
+    --purple-dark: #23044A;  /* Storm Purple - dark accents / text-on-light */
+    --purple-mid: #7742FF;   /* Electric Purple - mid-tone accents, badges */
+    --yellow: #FCFF4E;       /* Radiant Lemon - bright accent */
     --white: #FFFFFF;
+    --mint: #73FBD3;         /* Cool Mint - positive/up */
+    --watermelon: #FF8080;   /* Wild Watermelon - negative/down */
   }
 
   * { box-sizing: border-box; }
@@ -34,7 +38,7 @@
     color: var(--white);
     position: relative;
     overflow: hidden;
-    padding: 60px 70px;
+    padding: 100px 70px 60px 70px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     border-radius: 4px;
   }
@@ -183,8 +187,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 28px;
-    height: calc(100% - 40px);
-    align-content: center;
+    margin-top: 20px;
   }
 
   .icon-stat-card {
@@ -192,9 +195,11 @@
     border: 1px solid rgba(255,255,255,0.15);
     border-radius: 16px;
     padding: 32px 20px;
+    min-height: 260px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     text-align: center;
     gap: 14px;
   }
@@ -203,7 +208,7 @@
     width: 76px;
     height: 76px;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, #7B4CD6, var(--purple-dark));
+    background: radial-gradient(circle at 30% 30%, var(--purple-mid), var(--purple-dark));
     border: 3px solid var(--yellow);
     display: flex;
     align-items: center;
@@ -236,8 +241,8 @@
     background: rgba(255,255,255,0.12);
   }
 
-  .icon-stat-card .stat-trend.up { color: #7CE38B; }
-  .icon-stat-card .stat-trend.down { color: #FF8A8A; }
+  .icon-stat-card .stat-trend.up { color: var(--mint); }
+  .icon-stat-card .stat-trend.down { color: var(--watermelon); }
   .icon-stat-card .stat-trend.flat { color: rgba(255,255,255,0.75); }
 
   /* ---------- Team Highlights (merged one-page) ---------- */
@@ -245,9 +250,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 22px;
-    height: calc(100% - 40px);
-    align-content: center;
+    gap: 18px;
+    margin-top: 20px;
   }
 
   .person-card {
@@ -255,7 +259,7 @@
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.15);
     border-radius: 14px;
-    padding: 22px 24px;
+    padding: 18px 22px;
   }
 
   .person-card .person-head {
@@ -269,7 +273,7 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, #7B4CD6, var(--purple-dark));
+    background: radial-gradient(circle at 30% 30%, var(--purple-mid), var(--purple-dark));
     border: 2px solid var(--yellow);
     display: flex;
     align-items: center;
@@ -312,6 +316,17 @@
     line-height: 1.45;
     margin: 0;
     opacity: 0.95;
+  }
+
+  .person-card--featured {
+    width: 460px;
+    background: rgba(255,255,255,0.13);
+    border: 1px solid var(--yellow);
+    box-shadow: 0 0 0 3px rgba(252,255,78,0.12);
+  }
+
+  .person-card--featured .person-tag {
+    background: var(--yellow);
   }
 
   /* ---------- Spotlight Slide ---------- */
@@ -378,7 +393,7 @@
   .next-up-teaser {
     margin-top: 34px;
     background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,232,0,0.4);
+    border: 1px solid rgba(252,255,78,0.4);
     border-radius: 14px;
     padding: 18px 28px;
     max-width: 560px;
@@ -480,6 +495,44 @@
     margin: 0;
   }
 
+  .strategy-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 30px;
+    align-items: start;
+  }
+
+  .strategy-panel {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 26px 28px;
+  }
+
+  .strategy-panel h3 {
+    color: var(--yellow);
+    font-size: 16px;
+    margin: 0 0 14px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .strategy-panel ul {
+    padding-left: 20px;
+    margin: 0;
+  }
+
+  .strategy-panel ul li {
+    font-size: 14.5px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .strategy-panel ul li:last-child {
+    margin-bottom: 0;
+  }
+
   /* ---------- Spotlight intro visual ---------- */
   .spotlight-intro-body {
     display: grid;
@@ -547,8 +600,8 @@
     border: 6px solid var(--yellow);
     transform: rotate(0deg);
     box-shadow:
-      0 0 0 10px rgba(255,232,0,0.12),
-      0 0 0 20px rgba(123,76,214,0.35),
+      0 0 0 10px rgba(252,255,78,0.12),
+      0 0 0 20px rgba(119,66,255,0.35),
       0 16px 34px rgba(0,0,0,0.45);
   }
 
@@ -626,6 +679,15 @@
     margin: 0;
     font-size: 13px;
     line-height: 1.4;
+  }
+
+  .kudzai-detail-full {
+    grid-column: 1 / -1;
+  }
+
+  .kudzai-detail-full p {
+    font-size: 14px;
+    line-height: 1.5;
   }
 
   /* ---------- Print / PDF export ---------- */
@@ -721,65 +783,46 @@
     <div class="page-number">01</div>
   </section>
 
-  <!-- SLIDE 2: WHO WE ARE -->
+  <!-- SLIDE 2: TEAM STATS -->
   <section class="slide">
     <div class="logo-mark"><img src="GL.png" alt="Dabble logo">DABBLE</div>
     <div class="slide-body-center">
-      <h1 class="title">Who We Are</h1>
-      <h2 class="subtitle">The core BI team behind Dabble's reporting and analytics</h2>
-      <ul>
-        <li>We own Board and exec reporting, regulatory &amp; compliance dashboards, and marketing performance views.</li>
-        <li>We're building out a growing self-service reporting layer for the wider business.</li>
-      </ul>
-      <div class="avatar-row">
-        <div class="avatar-chip"><span class="avatar-initial">M</span><span class="avatar-name">Madi</span></div>
-        <div class="avatar-chip"><span class="avatar-initial">B</span><span class="avatar-name">Brett</span></div>
-        <div class="avatar-chip"><span class="avatar-initial">T</span><span class="avatar-name">Toby</span></div>
-        <div class="avatar-chip"><span class="avatar-initial">G</span><span class="avatar-name">Gaz</span></div>
-        <div class="avatar-chip"><span class="avatar-initial">K</span><span class="avatar-name">Kudzai</span></div>
+      <h1 class="title">July 2026: Team Stats</h1>
+      <h2 class="subtitle">Volume across Insights Requests, Helpdesk, Integrity and BI Initiatives</h2>
+
+      <div class="icon-stats-grid">
+        <div class="icon-stat-card">
+          <div class="icon-badge">🏆</div>
+          <p class="stat-value">37</p>
+          <p class="stat-caption">Insights Requests</p>
+          <span class="stat-trend up">▲ 23% vs June</span>
+        </div>
+        <div class="icon-stat-card">
+          <div class="icon-badge">🚀</div>
+          <p class="stat-value">45</p>
+          <p class="stat-caption">Helpdesk</p>
+        </div>
+        <div class="icon-stat-card">
+          <div class="icon-badge">🛡️</div>
+          <p class="stat-value">15</p>
+          <p class="stat-caption">Integrity</p>
+        </div>
+        <div class="icon-stat-card">
+          <div class="icon-badge">🔁</div>
+          <p class="stat-value">12</p>
+          <p class="stat-caption">BI Initiatives / Projects</p>
+          <span class="stat-trend up">▲ 50% vs June</span>
+        </div>
       </div>
     </div>
+    <p style="position:absolute; bottom:30px; left:70px; font-size:12px; opacity:0.6; margin:0;">Helpdesk and Integrity are now tracked as separate categories (55 combined in June).</p>
     <div class="page-number">02</div>
   </section>
 
-  <!-- SLIDE 3: TEAM STATS -->
+  <!-- SLIDE 3: TEAM HIGHLIGHTS (MERGED ONE-PAGE) -->
   <section class="slide">
     <div class="logo-mark"><img src="GL.png" alt="Dabble logo">DABBLE</div>
-    <h1 class="title">July 2026: Team Stats</h1>
-    <h2 class="subtitle">Volume across Insights Requests, Helpdesks and Initiatives</h2>
-
-    <div class="icon-stats-grid">
-      <div class="icon-stat-card">
-        <div class="icon-badge">🏆</div>
-        <p class="stat-value">36</p>
-        <p class="stat-caption">IRs Completed</p>
-        <span class="stat-trend up">▲ 20% vs June</span>
-      </div>
-      <div class="icon-stat-card">
-        <div class="icon-badge">🚀</div>
-        <p class="stat-value">45</p>
-        <p class="stat-caption">Helpdesks Resolved</p>
-        <span class="stat-trend down">▼ 18% vs June</span>
-      </div>
-      <div class="icon-stat-card">
-        <div class="icon-badge">🔁</div>
-        <p class="stat-value">8</p>
-        <p class="stat-caption">Initiatives / Recurring</p>
-        <span class="stat-trend flat">◆ Flat vs June</span>
-      </div>
-      <div class="icon-stat-card">
-        <div class="icon-badge">⚡</div>
-        <p class="stat-value">92</p>
-        <p class="stat-caption">Total Tasks Shipped</p>
-        <span class="stat-trend flat">◆ Flat vs June</span>
-      </div>
-    </div>
-    <div class="page-number">03</div>
-  </section>
-
-  <!-- SLIDE 4: TEAM HIGHLIGHTS (MERGED ONE-PAGE) -->
-  <section class="slide">
-    <div class="logo-mark"><img src="GL.png" alt="Dabble logo">DABBLE</div>
+    <div class="slide-body-center">
     <h1 class="title">Team Highlights: July</h1>
     <h2 class="subtitle">What each of us shipped, solved and supported</h2>
     <div class="people-grid">
@@ -827,50 +870,51 @@
         <span class="person-tag">Delivered</span>
         <p class="person-desc">Shipped the NFL Season 1 YoY review (deck, Excel model and QuickSight backbone), then kicked off the Dabble Day Dashboard.</p>
       </div>
-      <div class="person-card">
+      <div class="person-card person-card--featured">
         <div class="person-head">
-          <div class="person-icon">🛡️</div>
+          <div class="person-icon">🚫</div>
           <div>
             <p class="person-name">Kudzai</p>
-            <p class="person-role">Escheatment &amp; Compliance</p>
+            <p class="person-role">Rejected Bets Dashboard</p>
           </div>
         </div>
-        <span class="person-tag">Proactive</span>
-        <p class="person-desc">Built a dashboard tracking unclaimed-fund balances against state dormancy thresholds across all US states.</p>
+        <span class="person-tag">Featured</span>
+        <p class="person-desc">Built a dashboard that breaks down why, when and how bets get rejected: by reason code, market, region and time of day. Instead of anecdotal reports that "bets keep getting rejected," teams can now see exactly where it's happening and act on the pattern instead of the noise.</p>
+      </div>
+    </div>
+    </div>
+    <div class="page-number">03</div>
+  </section>
+
+  <!-- SLIDE 4: STRATEGY -->
+  <section class="slide">
+    <div class="logo-mark"><img src="GL.png" alt="Dabble logo">DABBLE</div>
+    <div class="slide-body-center">
+      <h1 class="title">Strategy Update</h1>
+      <h2 class="subtitle">July was a big month for BI initiatives</h2>
+      <div class="strategy-columns">
+        <div class="strategy-panel">
+          <h3>This Month</h3>
+          <ul>
+            <li>Started engaging with vendors to understand the self-serve analytics space, as we think about the future of reporting at Dabble.</li>
+            <li>Kicked off our migration from Asana to Jira, to better align our planning with Data Engineering and Data Modelling.</li>
+            <li>Built a Claude skill for querying our warehouse via the Databricks MCP connector, giving us and users across the business a smarter way to query and interact with our data.</li>
+          </ul>
+        </div>
+        <div class="strategy-panel">
+          <h3>Coming Up in August</h3>
+          <ul>
+            <li>Continuing our reporting audit.</li>
+            <li>Starting work on validating our core commercial metrics, making sure the numbers the business relies on are accurate and consistent.</li>
+            <li>More to come!</li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="page-number">04</div>
   </section>
 
-  <!-- SLIDE 5: STRATEGY -->
-  <section class="slide">
-    <div class="logo-mark"><img src="GL.png" alt="Dabble logo">DABBLE</div>
-    <div class="slide-body-center">
-      <h1 class="title">Strategy Update</h1>
-      <h2 class="subtitle">Where BI is investing beyond the monthly grind</h2>
-      <div class="strategy-grid">
-        <div class="strategy-card">
-          <div class="strategy-icon">1</div>
-          <p>Continuing data dictionary uplift and reporting standards work.</p>
-        </div>
-        <div class="strategy-card">
-          <div class="strategy-icon">2</div>
-          <p>Evaluating tooling as self-service demand grows.</p>
-        </div>
-        <div class="strategy-card">
-          <div class="strategy-icon">3</div>
-          <p>Regular catch-ups with teams across Dabble to surface needs early. If you don't have one on the calendar and would like one, reach out.</p>
-        </div>
-        <div class="strategy-card">
-          <div class="strategy-icon">4</div>
-          <p>Partnering with Data Engineering and Data Modelling on the warehouse uplift and global reporting scale.</p>
-        </div>
-      </div>
-    </div>
-    <div class="page-number">05</div>
-  </section>
-
-  <!-- SLIDE 6: BI TEAM SPOTLIGHT (MERGED) -->
+  <!-- SLIDE 5: BI TEAM SPOTLIGHT (MERGED) -->
   <section class="slide">
     <div class="logo-mark"><img src="GL.png" alt="Dabble logo">DABBLE</div>
     <div class="kudzai-spotlight-body">
@@ -881,17 +925,13 @@
         <span class="kudzai-name-tag">BI Team Member Spotlight</span>
         <h1 class="title">Kudzai "The Ledger" Shava</h1>
         <div class="kudzai-detail-grid">
-          <div>
+          <div class="kudzai-detail-full">
             <h3>Origin</h3>
-            <p>Legend has it Kudzai was forged, not born: assembled sometime in Q2 from spare Asana GIDs and unresolved helpdesk threads. Nobody has seen the moment of creation. There are theories.</p>
+            <p>Legend has it Kudzai was forged, not born: assembled sometime in Q2 from spare Asana GIDs and unresolved helpdesk threads. The truth is less exciting: just a very committed BI analyst from Harare with a genuine gift for making compliance data behave. The PayID name-matching fix from June still pays dividends: the false positive rate stayed down all July.</p>
           </div>
           <div>
             <h3>BI Superpower</h3>
-            <p>Sheer throughput, touching Compliance/RSG, Marketing and Operations across AU, US and UK. The Sustainable Wagering summary, the Compliance EOM dashboard and extract, the Social Dabblers report, Premium Prospecting, World Cup Bet Club, retention rate work, copy-bet stats: if it touched three regions and needed doing fast, it probably has Kudzai's name on it.</p>
-          </div>
-          <div>
-            <h3>Origin Story, Corrected</h3>
-            <p>Actually just a very committed BI analyst from Harare with a genuine gift for making compliance data behave. The PayID name-matching fix from June still pays dividends: the false positive rate stayed down all July. Drop Kudzai a line if your dashboard has ever silently broken and mysteriously started working again, there's a decent chance that was them.</p>
+            <p>Sheer throughput, touching Compliance/RSG, Marketing and Operations across AU, US and UK. If it touched three regions and needed doing fast, it probably has Kudzai's name on it.</p>
           </div>
           <div>
             <h3>Interested In</h3>
@@ -900,10 +940,10 @@
         </div>
       </div>
     </div>
-    <div class="page-number">06</div>
+    <div class="page-number">05</div>
   </section>
 
-  <!-- SLIDE 7: HOW TO WORK WITH US -->
+  <!-- SLIDE 6: HOW TO WORK WITH US -->
   <section class="slide">
     <div class="logo-mark"><img src="GL.png" alt="Dabble logo">DABBLE</div>
     <h1 class="title">How To Work With BI</h1>
@@ -925,20 +965,20 @@
         <p>Early conversations beat late surprises: talk to us before things are on fire.</p>
       </div>
     </div>
-    <div class="page-number">07</div>
+    <div class="page-number">06</div>
   </section>
 
-  <!-- SLIDE 8: CLOSING -->
+  <!-- SLIDE 7: CLOSING -->
   <section class="slide closing-center">
     <div class="logo-mark"><img src="GL.png" alt="Dabble logo">DABBLE</div>
     <h1 class="title" style="text-align:center;">Thank You</h1>
     <p style="max-width:600px;">Thanks for reading the July BI Team Monthly Update. Reach out if you'd like a deeper dive into anything we covered.</p>
     <div class="next-up-teaser">
       <span class="next-up-label">Next Up: August</span>
-      <p>Progress on the warehouse uplift, the next round of self-service tooling decisions, and another BI Team Member Spotlight. See you then.</p>
+      <p>Continuing the reporting audit, kicking off work to validate our core commercial metrics, and another BI Team Member Spotlight. See you then.</p>
     </div>
     <p style="opacity:0.7; margin-top:20px;">BI • Data Insights • July 2026</p>
-    <div class="page-number">08</div>
+    <div class="page-number">07</div>
   </section>
 
 </div>

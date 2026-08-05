@@ -1,12 +1,15 @@
 const pptxgen = require("pptxgenjs");
 
-const PURPLE = "5620AD";
-const PURPLE_DARK = "3F1580";
-const PURPLE_MID = "7B4CD6";
-const YELLOW = "FFE800";
+// Dabble brand palette
+const PURPLE = "4D23A4";       // Cosmic Purple - main background
+const PURPLE_DARK = "23044A";  // Storm Purple - dark accents / text-on-light
+const PURPLE_MID = "7742FF";   // Electric Purple - mid-tone accents, badges
+const YELLOW = "FCFF4E";       // Radiant Lemon - bright accent
 const WHITE = "FFFFFF";
-const CARD_BG = "6A35BE"; // approximation of rgba(255,255,255,0.08) over purple
-const CARD_BORDER = "8257C9"; // approximation of rgba(255,255,255,0.15) over purple
+const MINT = "73FBD3";         // Cool Mint - positive/up
+const WATERMELON = "FF8080";   // Wild Watermelon - negative/down
+const CARD_BG = "6B48B5";      // approximation of rgba(255,255,255,0.08) over purple
+const CARD_BORDER = "8B6BC7";  // approximation of rgba(255,255,255,0.15) over purple
 
 const pres = new pptxgen();
 pres.layout = "LAYOUT_WIDE"; // 13.333 x 7.5 in, 16:9
@@ -31,7 +34,7 @@ function addBase(slide, pageNum) {
 
 function title(slide, text, opts = {}) {
   slide.addText(text.toUpperCase(), {
-    x: 0.5, y: opts.y || 0.95, w: opts.w || 12.3, h: opts.h || 0.7,
+    x: 0.5, y: opts.y || 1.15, w: opts.w || 12.3, h: opts.h || 0.7,
     fontFace: "Arial", fontSize: opts.fontSize || 30, bold: true, color: YELLOW,
     charSpacing: 0.5, margin: 0,
   });
@@ -39,7 +42,7 @@ function title(slide, text, opts = {}) {
 
 function subtitle(slide, text, opts = {}) {
   slide.addText(text, {
-    x: 0.5, y: opts.y || 1.55, w: opts.w || 12.3, h: opts.h || 0.4,
+    x: 0.5, y: opts.y || 1.75, w: opts.w || 12.3, h: opts.h || 0.4,
     fontFace: "Arial", fontSize: 14, color: WHITE, transparency: 10, margin: 0,
   });
 }
@@ -50,149 +53,112 @@ function subtitle(slide, text, opts = {}) {
   addBase(slide, "01");
 
   slide.addText("JULY '26", {
-    x: 0.5, y: 2.1, w: 4, h: 0.35,
+    x: 0.5, y: 2.3, w: 4, h: 0.35,
     fontFace: "Arial", fontSize: 13, color: WHITE, transparency: 15, charSpacing: 2, margin: 0,
   });
   slide.addText("BI TEAM\nMONTHLY UPDATE", {
-    x: 0.5, y: 2.45, w: 6.2, h: 1.7,
+    x: 0.5, y: 2.65, w: 6.2, h: 1.7,
     fontFace: "Arial", fontSize: 40, bold: true, color: YELLOW, margin: 0, lineSpacing: 42,
   });
   slide.addText("A look back at what the core BI team shipped, solved and supported across July.", {
-    x: 0.5, y: 4.25, w: 5.6, h: 0.8,
+    x: 0.5, y: 4.45, w: 5.6, h: 0.8,
     fontFace: "Arial", fontSize: 14, color: WHITE, transparency: 10, margin: 0,
   });
 
   slide.addImage({
     path: "team photo.png",
-    x: 7.3, y: 2.15, w: 5.5, h: 2.87,
+    x: 7.3, y: 2.35, w: 5.5, h: 2.87,
     sizing: { type: "cover", w: 5.5, h: 2.87 },
-    rounding: false,
   });
 }
 
-// ---------- SLIDE 2: WHO WE ARE ----------
+// ---------- SLIDE 2: TEAM STATS ----------
 {
   const slide = pres.addSlide();
   addBase(slide, "02");
-  title(slide, "Who We Are", { y: 1.7 });
-  subtitle(slide, "The core BI team behind Dabble's reporting and analytics", { y: 2.35 });
-
-  slide.addText(
-    [
-      { text: "We own Board and exec reporting, regulatory & compliance dashboards, and marketing performance views.", options: { bullet: true, breakLine: true, paraSpaceAfter: 12 } },
-      { text: "We're building out a growing self-service reporting layer for the wider business.", options: { bullet: true } },
-    ],
-    { x: 0.5, y: 2.95, w: 11.5, h: 1.3, fontFace: "Arial", fontSize: 15, color: WHITE, margin: 0, lineSpacing: 22 }
-  );
-
-  const names = [
-    ["M", "Madi"], ["B", "Brett"], ["T", "Toby"], ["G", "Gaz"], ["K", "Kudzai"],
-  ];
-  let cx = 0.5;
-  const chipY = 4.7;
-  names.forEach(([initial, name]) => {
-    const chipW = 1.5;
-    slide.addShape("roundRect", {
-      x: cx, y: chipY, w: chipW, h: 0.6, rectRadius: 0.3,
-      fill: { color: CARD_BG }, line: { color: CARD_BORDER, width: 1 },
-    });
-    slide.addShape("ellipse", {
-      x: cx + 0.08, y: chipY + 0.08, w: 0.44, h: 0.44,
-      fill: { color: YELLOW }, line: { type: "none" },
-    });
-    slide.addText(initial, {
-      x: cx + 0.08, y: chipY + 0.08, w: 0.44, h: 0.44,
-      fontFace: "Arial", fontSize: 13, bold: true, color: PURPLE_DARK,
-      align: "center", valign: "middle", margin: 0,
-    });
-    slide.addText(name, {
-      x: cx + 0.58, y: chipY, w: chipW - 0.6, h: 0.6,
-      fontFace: "Arial", fontSize: 12, bold: true, color: WHITE,
-      valign: "middle", margin: 0,
-    });
-    cx += chipW + 0.25;
-  });
-}
-
-// ---------- SLIDE 3: TEAM STATS ----------
-{
-  const slide = pres.addSlide();
-  addBase(slide, "03");
-  title(slide, "July 2026: Team Stats", { y: 1.7 });
-  subtitle(slide, "Volume across Insights Requests, Helpdesks and Initiatives", { y: 2.35 });
+  title(slide, "July 2026: Team Stats", { y: 1.9 });
+  subtitle(slide, "Volume across Insights Requests, Helpdesk, Integrity and BI Initiatives", { y: 2.55 });
 
   const stats = [
-    { icon: "\u{1F3C6}", value: "36", caption: "IRs Completed", trend: "▲ 20% vs June", color: "7CE38B" },
-    { icon: "\u{1F680}", value: "45", caption: "Helpdesks Resolved", trend: "▼ 18% vs June", color: "FF8A8A" },
-    { icon: "\u{1F501}", value: "8", caption: "Initiatives / Recurring", trend: "◆ Flat vs June", color: "DDDDDD" },
-    { icon: "⚡", value: "92", caption: "Total Tasks Shipped", trend: "◆ Flat vs June", color: "DDDDDD" },
+    { icon: "\u{1F3C6}", value: "37", caption: "Insights Requests", trend: "▲ 23% vs June", color: MINT },
+    { icon: "\u{1F680}", value: "45", caption: "Helpdesk", trend: null },
+    { icon: "\u{1F6E1}", value: "15", caption: "Integrity", trend: null },
+    { icon: "\u{1F501}", value: "12", caption: "BI Initiatives / Projects", trend: "▲ 50% vs June", color: MINT },
   ];
 
   const cardW = 2.7, gap = 0.35;
   const totalW = cardW * 4 + gap * 3;
   let cx = (SLIDE_W - totalW) / 2;
-  const cardY = 3.0, cardH = 3.1;
+  const cardY = 3.15, cardH = 2.9;
 
   stats.forEach((s) => {
     slide.addShape("roundRect", {
       x: cx, y: cardY, w: cardW, h: cardH, rectRadius: 0.12,
       fill: { color: CARD_BG }, line: { color: CARD_BORDER, width: 1 },
     });
-    const badgeSize = 0.95;
+    const badgeSize = 0.9;
     slide.addShape("ellipse", {
-      x: cx + (cardW - badgeSize) / 2, y: cardY + 0.35, w: badgeSize, h: badgeSize,
+      x: cx + (cardW - badgeSize) / 2, y: cardY + 0.3, w: badgeSize, h: badgeSize,
       fill: { color: PURPLE_MID }, line: { color: YELLOW, width: 2 },
     });
     slide.addText(s.icon, {
-      x: cx + (cardW - badgeSize) / 2, y: cardY + 0.35, w: badgeSize, h: badgeSize,
-      fontSize: 30, align: "center", valign: "middle", margin: 0,
+      x: cx + (cardW - badgeSize) / 2, y: cardY + 0.3, w: badgeSize, h: badgeSize,
+      fontSize: 28, align: "center", valign: "middle", margin: 0,
     });
     slide.addText(s.value, {
-      x: cx, y: cardY + 1.45, w: cardW, h: 0.6,
+      x: cx, y: cardY + 1.35, w: cardW, h: 0.6,
       fontFace: "Arial", fontSize: 34, bold: true, color: YELLOW,
       align: "center", margin: 0,
     });
     slide.addText(s.caption, {
-      x: cx + 0.15, y: cardY + 2.05, w: cardW - 0.3, h: 0.4,
+      x: cx + 0.15, y: cardY + 1.95, w: cardW - 0.3, h: 0.4,
       fontFace: "Arial", fontSize: 11.5, color: WHITE, transparency: 10,
       align: "center", margin: 0,
     });
-    slide.addShape("roundRect", {
-      x: cx + 0.35, y: cardY + 2.5, w: cardW - 0.7, h: 0.35, rectRadius: 0.17,
-      fill: { color: "FFFFFF", transparency: 88 }, line: { type: "none" },
-    });
-    slide.addText(s.trend, {
-      x: cx + 0.35, y: cardY + 2.5, w: cardW - 0.7, h: 0.35,
-      fontFace: "Arial", fontSize: 10.5, bold: true, color: s.color,
-      align: "center", valign: "middle", margin: 0,
-    });
+    if (s.trend) {
+      slide.addShape("roundRect", {
+        x: cx + 0.35, y: cardY + 2.4, w: cardW - 0.7, h: 0.35, rectRadius: 0.17,
+        fill: { color: "FFFFFF", transparency: 88 }, line: { type: "none" },
+      });
+      slide.addText(s.trend, {
+        x: cx + 0.35, y: cardY + 2.4, w: cardW - 0.7, h: 0.35,
+        fontFace: "Arial", fontSize: 10.5, bold: true, color: s.color,
+        align: "center", valign: "middle", margin: 0,
+      });
+    }
     cx += cardW + gap;
+  });
+
+  slide.addText("Helpdesk and Integrity are now tracked as separate categories (55 combined in June).", {
+    x: 0.5, y: SLIDE_H - 0.55, w: 8, h: 0.3,
+    fontFace: "Arial", fontSize: 9.5, color: WHITE, transparency: 40, margin: 0,
   });
 }
 
-// ---------- SLIDE 4: TEAM HIGHLIGHTS ----------
+// ---------- SLIDE 3: TEAM HIGHLIGHTS ----------
 {
   const slide = pres.addSlide();
-  addBase(slide, "04");
-  title(slide, "Team Highlights: July", { y: 1.7 });
-  subtitle(slide, "What each of us shipped, solved and supported", { y: 2.35 });
+  addBase(slide, "03");
+  title(slide, "Team Highlights: July", { y: 1.15 });
+  subtitle(slide, "What each of us shipped, solved and supported", { y: 1.75 });
 
   const people = [
-    { icon: "\u{1F9FE}", name: "Madi", role: "Board & US CPA", tag: "P1 / P2", desc: "Ran the ongoing Board Reporting series across AUS, USA and UK, and rebuilt the US CPA warehouse logic for Marketing." },
-    { icon: "\u{1F3C7}", name: "Brett", role: "Racing & World Cup", tag: "P1", desc: "Closed out the AU Racing Body Fees rebuild and wrapped World Cup Wrapped reporting end-to-end for CRM." },
-    { icon: "\u{1F50D}", name: "Toby", role: "FY26 Audit Season", tag: "P1", desc: "Owned the Rocket Boost & Pending Bets FY26 Audits, plus a tight-turnaround Bonus Payout Extract." },
-    { icon: "\u{1F3C8}", name: "Gaz", role: "NFL Season 1 Review", tag: "Delivered", desc: "Shipped the NFL Season 1 YoY review (deck, Excel model and QuickSight backbone), then kicked off the Dabble Day Dashboard." },
-    { icon: "\u{1F6E1}", name: "Kudzai", role: "Escheatment & Compliance", tag: "Proactive", desc: "Built a dashboard tracking unclaimed-fund balances against state dormancy thresholds across all US states." },
+    { icon: "\u{1F9FE}", name: "Madi", role: "Board & US CPA", tag: "P1 / P2", desc: "Ran the ongoing Board Reporting series across AUS, USA and UK, and rebuilt the US CPA warehouse logic for Marketing.", featured: false },
+    { icon: "\u{1F3C7}", name: "Brett", role: "Racing & World Cup", tag: "P1", desc: "Closed out the AU Racing Body Fees rebuild and wrapped World Cup Wrapped reporting end-to-end for CRM.", featured: false },
+    { icon: "\u{1F50D}", name: "Toby", role: "FY26 Audit Season", tag: "P1", desc: "Owned the Rocket Boost & Pending Bets FY26 Audits, plus a tight-turnaround Bonus Payout Extract.", featured: false },
+    { icon: "\u{1F3C8}", name: "Gaz", role: "NFL Season 1 Review", tag: "Delivered", desc: "Shipped the NFL Season 1 YoY review (deck, Excel model and QuickSight backbone), then kicked off the Dabble Day Dashboard.", featured: false },
+    { icon: "\u{1F6AB}", name: "Kudzai", role: "Rejected Bets Dashboard", tag: "Featured", desc: "Built a dashboard that breaks down why, when and how bets get rejected: by reason code, market, region and time of day. Instead of anecdotal reports that “bets keep getting rejected,” teams can now see exactly where it's happening and act on the pattern instead of the noise.", featured: true },
   ];
 
-  const cardW = 3.85, cardH = 1.95, gapX = 0.25, gapY = 0.25;
+  const cardW = 3.85, cardH = 1.95, featuredW = 5.1, gapX = 0.25, gapY = 0.25;
   const row1 = people.slice(0, 3);
   const row2 = people.slice(3);
 
-  function drawCard(p, x, y) {
+  function drawCard(p, x, y, w) {
     slide.addShape("roundRect", {
-      x, y, w: cardW, h: cardH, rectRadius: 0.1,
-      fill: { color: CARD_BG }, line: { color: CARD_BORDER, width: 1 },
+      x, y, w, h: cardH, rectRadius: 0.1,
+      fill: { color: p.featured ? "7B58C4" : CARD_BG },
+      line: { color: p.featured ? YELLOW : CARD_BORDER, width: p.featured ? 1.5 : 1 },
     });
     const iconSize = 0.5;
     slide.addShape("ellipse", {
@@ -204,87 +170,88 @@ function subtitle(slide, text, opts = {}) {
       fontSize: 18, align: "center", valign: "middle", margin: 0,
     });
     slide.addText(p.name, {
-      x: x + 0.88, y: y + 0.2, w: cardW - 1.1, h: 0.3,
+      x: x + 0.88, y: y + 0.2, w: w - 1.1, h: 0.3,
       fontFace: "Arial", fontSize: 14, bold: true, color: WHITE, margin: 0,
     });
     slide.addText(p.role, {
-      x: x + 0.88, y: y + 0.47, w: cardW - 1.1, h: 0.25,
+      x: x + 0.88, y: y + 0.47, w: w - 1.1, h: 0.25,
       fontFace: "Arial", fontSize: 10, color: YELLOW, margin: 0,
     });
+    const tagW = p.tag.length > 8 ? 1.3 : 1.1;
     slide.addShape("roundRect", {
-      x: x + 0.25, y: y + 0.85, w: 1.1, h: 0.28, rectRadius: 0.14,
+      x: x + 0.25, y: y + 0.85, w: tagW, h: 0.28, rectRadius: 0.14,
       fill: { color: YELLOW }, line: { type: "none" },
     });
     slide.addText(p.tag.toUpperCase(), {
-      x: x + 0.25, y: y + 0.85, w: 1.1, h: 0.28,
+      x: x + 0.25, y: y + 0.85, w: tagW, h: 0.28,
       fontFace: "Arial", fontSize: 8.5, bold: true, color: PURPLE_DARK,
       align: "center", valign: "middle", margin: 0,
     });
     slide.addText(p.desc, {
-      x: x + 0.25, y: y + 1.2, w: cardW - 0.5, h: cardH - 1.3,
-      fontFace: "Arial", fontSize: 10, color: WHITE, transparency: 5, margin: 0, lineSpacing: 13,
+      x: x + 0.25, y: y + 1.2, w: w - 0.5, h: cardH - 1.3,
+      fontFace: "Arial", fontSize: p.featured ? 9 : 10, color: WHITE, transparency: 5, margin: 0, lineSpacing: 12,
     });
   }
 
   const totalRowW = cardW * 3 + gapX * 2;
   let startX = (SLIDE_W - totalRowW) / 2;
-  const row1Y = 3.05;
-  row1.forEach((p, i) => drawCard(p, startX + i * (cardW + gapX), row1Y));
+  const row1Y = 2.5;
+  row1.forEach((p, i) => drawCard(p, startX + i * (cardW + gapX), row1Y, cardW));
 
-  const totalRow2W = cardW * 2 + gapX;
+  const totalRow2W = cardW + featuredW + gapX;
   let startX2 = (SLIDE_W - totalRow2W) / 2;
   const row2Y = row1Y + cardH + gapY;
-  row2.forEach((p, i) => drawCard(p, startX2 + i * (cardW + gapX), row2Y));
+  drawCard(row2[0], startX2, row2Y, cardW);
+  drawCard(row2[1], startX2 + cardW + gapX, row2Y, featuredW);
 }
 
-// ---------- SLIDE 5: STRATEGY ----------
+// ---------- SLIDE 4: STRATEGY ----------
+{
+  const slide = pres.addSlide();
+  addBase(slide, "04");
+  title(slide, "Strategy Update", { y: 1.7 });
+  subtitle(slide, "July was a big month for BI initiatives", { y: 2.35 });
+
+  const panelW = 5.85, panelH = 3.6, gapX = 0.3;
+  const totalW = panelW * 2 + gapX;
+  const startX = (SLIDE_W - totalW) / 2;
+  const startY = 3.0;
+
+  function drawPanel(x, heading, items) {
+    slide.addShape("roundRect", {
+      x, y: startY, w: panelW, h: panelH, rectRadius: 0.1,
+      fill: { color: CARD_BG }, line: { color: CARD_BORDER, width: 1 },
+    });
+    slide.addText(heading.toUpperCase(), {
+      x: x + 0.3, y: startY + 0.25, w: panelW - 0.6, h: 0.35,
+      fontFace: "Arial", fontSize: 13, bold: true, color: YELLOW, margin: 0, charSpacing: 0.5,
+    });
+    slide.addText(
+      items.map((t, i) => ({ text: t, options: { bullet: true, breakLine: i < items.length - 1, paraSpaceAfter: 10 } })),
+      {
+        x: x + 0.3, y: startY + 0.7, w: panelW - 0.6, h: panelH - 0.9,
+        fontFace: "Arial", fontSize: 11.5, color: WHITE, margin: 0, lineSpacing: 15,
+      }
+    );
+  }
+
+  drawPanel(startX, "This Month", [
+    "Started engaging with vendors to understand the self-serve analytics space, as we think about the future of reporting at Dabble.",
+    "Kicked off our migration from Asana to Jira, to better align our planning with Data Engineering and Data Modelling.",
+    "Built a Claude skill for querying our warehouse via the Databricks MCP connector, giving us and users across the business a smarter way to query and interact with our data.",
+  ]);
+
+  drawPanel(startX + panelW + gapX, "Coming Up in August", [
+    "Continuing our reporting audit.",
+    "Starting work on validating our core commercial metrics, making sure the numbers the business relies on are accurate and consistent.",
+    "More to come!",
+  ]);
+}
+
+// ---------- SLIDE 5: KUDZAI SPOTLIGHT ----------
 {
   const slide = pres.addSlide();
   addBase(slide, "05");
-  title(slide, "Strategy Update", { y: 1.9 });
-  subtitle(slide, "Where BI is investing beyond the monthly grind", { y: 2.55 });
-
-  const items = [
-    "Continuing data dictionary uplift and reporting standards work.",
-    "Evaluating tooling as self-service demand grows.",
-    "Regular catch-ups with teams across Dabble to surface needs early. If you don't have one on the calendar and would like one, reach out.",
-    "Partnering with Data Engineering and Data Modelling on the warehouse uplift and global reporting scale.",
-  ];
-
-  const cardW = 5.85, cardH = 1.55, gapX = 0.3, gapY = 0.3;
-  const totalW = cardW * 2 + gapX;
-  let startX = (SLIDE_W - totalW) / 2;
-  const startY = 3.25;
-
-  items.forEach((text, i) => {
-    const col = i % 2, row = Math.floor(i / 2);
-    const x = startX + col * (cardW + gapX);
-    const y = startY + row * (cardH + gapY);
-    slide.addShape("roundRect", {
-      x, y, w: cardW, h: cardH, rectRadius: 0.1,
-      fill: { color: CARD_BG }, line: { color: CARD_BORDER, width: 1 },
-    });
-    const numSize = 0.45;
-    slide.addShape("ellipse", {
-      x: x + 0.3, y: y + 0.3, w: numSize, h: numSize,
-      fill: { color: YELLOW }, line: { type: "none" },
-    });
-    slide.addText(String(i + 1), {
-      x: x + 0.3, y: y + 0.3, w: numSize, h: numSize,
-      fontFace: "Arial", fontSize: 14, bold: true, color: PURPLE_DARK,
-      align: "center", valign: "middle", margin: 0,
-    });
-    slide.addText(text, {
-      x: x + 0.9, y: y + 0.2, w: cardW - 1.2, h: cardH - 0.4,
-      fontFace: "Arial", fontSize: 12, color: WHITE, margin: 0, valign: "middle", lineSpacing: 15,
-    });
-  });
-}
-
-// ---------- SLIDE 6: KUDZAI SPOTLIGHT ----------
-{
-  const slide = pres.addSlide();
-  addBase(slide, "06");
 
   slide.addShape("roundRect", {
     x: 0.6, y: 0.95, w: 2.1, h: 0.4, rectRadius: 0.2,
@@ -323,35 +290,43 @@ function subtitle(slide, text, opts = {}) {
     fill: { type: "none" }, line: { color: YELLOW, width: 3 },
   });
 
+  // Origin (full width, merged - no duplicate origin stories)
+  slide.addText("ORIGIN", {
+    x: 4.55, y: 2.55, w: 8.1, h: 0.3,
+    fontFace: "Arial", fontSize: 11, bold: true, color: YELLOW, margin: 0,
+  });
+  slide.addText(
+    "Legend has it Kudzai was forged, not born: assembled sometime in Q2 from spare Asana GIDs and unresolved helpdesk threads. The truth is less exciting: just a very committed BI analyst from Harare with a genuine gift for making compliance data behave. The PayID name-matching fix from June still pays dividends: the false positive rate stayed down all July.",
+    {
+      x: 4.55, y: 2.87, w: 8.1, h: 1.15,
+      fontFace: "Arial", fontSize: 11, color: WHITE, transparency: 5, margin: 0, lineSpacing: 14,
+    }
+  );
+
   const details = [
-    { h: "Origin", p: "Legend has it Kudzai was forged, not born: assembled sometime in Q2 from spare Asana GIDs and unresolved helpdesk threads. Nobody has seen the moment of creation. There are theories." },
     { h: "BI Superpower", p: "Sheer throughput, touching Compliance/RSG, Marketing and Operations across AU, US and UK. If it touched three regions and needed doing fast, it probably has Kudzai's name on it." },
-    { h: "Origin Story, Corrected", p: "Actually just a very committed BI analyst from Harare with a genuine gift for making compliance data behave. The PayID name-matching fix from June still pays dividends: the false positive rate stayed down all July." },
     { h: "Interested In", p: "Turning “please just fix the false positives” into an actual root-cause fix instead of a patch. Ask about the SMSF/corporate trustee account handling if you want to see the enthusiasm in person." },
   ];
 
-  const colW = 3.15, colGap = 0.3;
-  const detailStartX = 4.55;
-  const rowH = 2.1;
+  const colW = 3.9, colGap = 0.3;
+  const detailStartX = 4.55, detailY = 4.25;
   details.forEach((d, i) => {
-    const col = i % 2, row = Math.floor(i / 2);
-    const x = detailStartX + col * (colW + colGap);
-    const y = 2.55 + row * rowH;
+    const x = detailStartX + i * (colW + colGap);
     slide.addText(d.h.toUpperCase(), {
-      x, y, w: colW, h: 0.3,
+      x, y: detailY, w: colW, h: 0.3,
       fontFace: "Arial", fontSize: 11, bold: true, color: YELLOW, margin: 0,
     });
     slide.addText(d.p, {
-      x, y: y + 0.32, w: colW, h: rowH - 0.4,
-      fontFace: "Arial", fontSize: 9.5, color: WHITE, transparency: 5, margin: 0, lineSpacing: 12,
+      x, y: detailY + 0.32, w: colW, h: 1.8,
+      fontFace: "Arial", fontSize: 10.5, color: WHITE, transparency: 5, margin: 0, lineSpacing: 13,
     });
   });
 }
 
-// ---------- SLIDE 7: HOW TO WORK WITH BI ----------
+// ---------- SLIDE 6: HOW TO WORK WITH BI ----------
 {
   const slide = pres.addSlide();
-  addBase(slide, "07");
+  addBase(slide, "06");
   title(slide, "How To Work With BI", { y: 1.7 });
 
   const items = [
@@ -380,10 +355,10 @@ function subtitle(slide, text, opts = {}) {
   });
 }
 
-// ---------- SLIDE 8: CLOSING ----------
+// ---------- SLIDE 7: CLOSING ----------
 {
   const slide = pres.addSlide();
-  addBase(slide, "08");
+  addBase(slide, "07");
 
   slide.addText("THANK YOU", {
     x: 0, y: 1.7, w: SLIDE_W, h: 0.9,
@@ -395,7 +370,7 @@ function subtitle(slide, text, opts = {}) {
     fontFace: "Arial", fontSize: 13, color: WHITE, align: "center", margin: 0, lineSpacing: 17,
   });
 
-  const boxW = 6.2, boxH = 1.15;
+  const boxW = 6.4, boxH = 1.2;
   const boxX = (SLIDE_W - boxW) / 2, boxY = 3.65;
   slide.addShape("roundRect", {
     x: boxX, y: boxY, w: boxW, h: boxH, rectRadius: 0.12,
@@ -406,15 +381,15 @@ function subtitle(slide, text, opts = {}) {
     fontFace: "Arial", fontSize: 10, bold: true, color: YELLOW, align: "center", margin: 0, charSpacing: 1,
   });
   slide.addText(
-    "Progress on the warehouse uplift, the next round of self-service tooling decisions, and another BI Team Member Spotlight. See you then.",
+    "Continuing the reporting audit, kicking off work to validate our core commercial metrics, and another BI Team Member Spotlight. See you then.",
     {
-      x: boxX + 0.3, y: boxY + 0.4, w: boxW - 0.6, h: 0.65,
+      x: boxX + 0.3, y: boxY + 0.4, w: boxW - 0.6, h: 0.7,
       fontFace: "Arial", fontSize: 11, color: WHITE, align: "center", margin: 0, lineSpacing: 14,
     }
   );
 
   slide.addText("BI  •  Data Insights  •  July 2026", {
-    x: 0, y: 5.1, w: SLIDE_W, h: 0.35,
+    x: 0, y: 5.15, w: SLIDE_W, h: 0.35,
     fontFace: "Arial", fontSize: 11, color: WHITE, transparency: 30, align: "center", margin: 0,
   });
 }
