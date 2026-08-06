@@ -329,6 +329,129 @@
     background: var(--yellow);
   }
 
+  /* ---------- Individual Highlight Slides ---------- */
+  .highlight-slide {
+    position: relative;
+  }
+
+  .highlight-watermark {
+    position: absolute;
+    right: -40px;
+    bottom: -60px;
+    font-size: 340px;
+    line-height: 1;
+    opacity: 0.06;
+    transform: rotate(-8deg);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .highlight-header {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-bottom: 22px;
+  }
+
+  .person-photo-wrap {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 3px solid var(--yellow);
+    background: radial-gradient(circle at 30% 30%, var(--purple-mid), var(--purple-dark));
+    box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+    overflow: hidden;
+  }
+
+  .person-photo-wrap .person-photo-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+  }
+
+  .person-photo-wrap img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .highlight-header .name-block h1 {
+    max-width: 780px;
+  }
+
+  .highlight-header .name-block .person-role {
+    font-size: 15px;
+    color: var(--yellow);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 4px 0 0 0;
+    opacity: 0.9;
+  }
+
+  .region-chip-row {
+    display: flex;
+    gap: 8px;
+    margin: 14px 0 4px 0;
+  }
+
+  .region-chip {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .highlight-desc {
+    max-width: 900px;
+    font-size: 17px;
+    line-height: 1.6;
+    margin: 16px 0 0 0;
+  }
+
+  .link-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 26px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .link-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.28);
+    color: var(--yellow);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: 30px;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+
+  .link-pill:hover {
+    background: rgba(255,255,255,0.22);
+    transform: translateY(-2px);
+  }
+
+  .link-pill .link-icon {
+    font-size: 14px;
+  }
+
   /* ---------- Spotlight Slide ---------- */
   .spotlight-grid {
     display: grid;
@@ -819,74 +942,124 @@
     <div class="page-number">02</div>
   </section>
 
-  <!-- SLIDE 3: TEAM HIGHLIGHTS (MERGED ONE-PAGE) -->
-  <section class="slide">
+  <!-- SLIDE 3: TOBY HIGHLIGHT -->
+  <section class="slide highlight-slide">
     <div class="logo-mark"><img src="GL.png" alt="Dabble logo">DABBLE</div>
+    <div class="highlight-watermark">🔍</div>
     <div class="slide-body-center">
-    <h1 class="title">Team Highlights: July</h1>
-    <h2 class="subtitle">What each of us shipped, solved and supported</h2>
-    <div class="people-grid">
-      <div class="person-card">
-        <div class="person-head">
-          <div class="person-icon">🧾</div>
-          <div>
-            <p class="person-name">Madi</p>
-            <p class="person-role">Board &amp; US CPA</p>
-          </div>
+      <div class="highlight-header">
+        <div class="person-photo-wrap">
+          <div class="person-photo-fallback">🔍</div>
+          <img src="toby.png" alt="Toby" onerror="this.style.opacity=0">
         </div>
-        <span class="person-tag">P1 / P2</span>
-        <p class="person-desc">Ran the ongoing Board Reporting series across AUS, USA and UK, and rebuilt the US CPA warehouse logic for Marketing.</p>
-      </div>
-      <div class="person-card">
-        <div class="person-head">
-          <div class="person-icon">🏇</div>
-          <div>
-            <p class="person-name">Brett</p>
-            <p class="person-role">Racing &amp; World Cup</p>
-          </div>
+        <div class="name-block">
+          <h1 class="title">Toby: Campaign Performance Dashboard</h1>
+          <p class="person-role">AU, UK &amp; US</p>
         </div>
-        <span class="person-tag">P1</span>
-        <p class="person-desc">Closed out the AU Racing Body Fees rebuild and wrapped World Cup Wrapped reporting end-to-end for CRM.</p>
       </div>
-      <div class="person-card">
-        <div class="person-head">
-          <div class="person-icon">🏈</div>
-          <div>
-            <p class="person-name">Gaz</p>
-            <p class="person-role">NFL Season 1 Review</p>
-          </div>
-        </div>
-        <span class="person-tag">Delivered</span>
-        <p class="person-desc">Shipped the NFL Season 1 YoY review (deck, Excel model and QuickSight backbone), then kicked off the Dabble Day Dashboard.</p>
+      <span class="person-tag">P1</span>
+      <div class="region-chip-row">
+        <span class="region-chip">🇦🇺 AU</span>
+        <span class="region-chip">🇬🇧 UK</span>
+        <span class="region-chip">🇺🇸 US</span>
       </div>
-      <div class="person-card person-card--featured">
-        <div class="person-head">
-          <div class="person-icon">🔍</div>
-          <div>
-            <p class="person-name">Toby</p>
-            <p class="person-role">Campaign Performance Dashboard (AU, UK &amp; US)</p>
-          </div>
-        </div>
-        <span class="person-tag">P1</span>
-        <p class="person-desc">Following on from last month's update, we've now migrated the dashboard onto Amplitude data across all three regions, closing the data gap flagged previously and giving CRM a consistent way to compare campaign performance and track payback. On top of that, the dashboard now properly supports control groups, letting CRM see how a campaign's held-out audience compares to those who received it, with Step Name and Experiment Split filtering allowing campaigns running in-built A/B tests to be compared arm-for-arm!</p>
+      <p class="highlight-desc">Following on from last month's update, we've now migrated the dashboard onto Amplitude data across all three regions, closing the data gap flagged previously and giving CRM a consistent way to compare campaign performance and track payback. On top of that, the dashboard now properly supports control groups, letting CRM see how a campaign's held-out audience compares to those who received it, with Step Name and Experiment Split filtering allowing campaigns running in-built A/B tests to be compared arm for arm!</p>
+      <div class="link-row">
+        <a class="link-pill" href="https://ap-southeast-2.quicksight.aws.amazon.com/sn/account/dabble-production/dashboards/0695edc8-f2fe-4b27-b129-d3c8cd92f8c0/sheets/0695edc8-f2fe-4b27-b129-d3c8cd92f8c0_dbdce15f-4af0-4d7b-b1ad-63e95e02a574" target="_blank" rel="noopener"><span class="link-icon">🔗</span>AU Dashboard</a>
+        <a class="link-pill" href="https://ap-southeast-2.quicksight.aws.amazon.com/sn/account/dabble-production/dashboards/ce971371-3053-41e9-8db7-ea6cef6303c9" target="_blank" rel="noopener"><span class="link-icon">🔗</span>UK Dashboard</a>
+        <a class="link-pill" href="https://ap-southeast-2.quicksight.aws.amazon.com/sn/account/dabble-production/dashboards/ed9fca1f-805a-484f-a010-a6eb9d8b9d6f/sheets/ed9fca1f-805a-484f-a010-a6eb9d8b9d6f_5fd6c055-66b6-44e7-8ce9-0b480017e117" target="_blank" rel="noopener"><span class="link-icon">🔗</span>US Dashboard</a>
       </div>
-      <div class="person-card person-card--featured">
-        <div class="person-head">
-          <div class="person-icon">🚫</div>
-          <div>
-            <p class="person-name">Kudzai</p>
-            <p class="person-role">Rejected Bets Dashboard</p>
-          </div>
-        </div>
-        <span class="person-tag">Featured</span>
-        <p class="person-desc">Built a dashboard that breaks down why, when and how bets get rejected: by reason code, market, region and time of day. Instead of anecdotal reports that "bets keep getting rejected," teams can now see exactly where it's happening and act on the pattern instead of the noise.</p>
-      </div>
-    </div>
     </div>
     <div class="page-number">03</div>
   </section>
 
-  <!-- SLIDE 4: STRATEGY -->
+  <!-- SLIDE 4: GAZ HIGHLIGHT -->
+  <section class="slide highlight-slide">
+    <div class="logo-mark"><img src="GL.png" alt="Dabble logo">DABBLE</div>
+    <div class="highlight-watermark">🏈</div>
+    <div class="slide-body-center">
+      <div class="highlight-header">
+        <div class="person-photo-wrap">
+          <div class="person-photo-fallback">🏈</div>
+          <img src="gaz.png" alt="Gaz" onerror="this.style.opacity=0">
+        </div>
+        <div class="name-block">
+          <h1 class="title">Gaz: Dabble Day Dashboard</h1>
+          <p class="person-role">AU, UK &amp; US</p>
+        </div>
+      </div>
+      <span class="person-tag">Delivered</span>
+      <div class="region-chip-row">
+        <span class="region-chip">🇦🇺 AU</span>
+        <span class="region-chip">🇬🇧 UK</span>
+        <span class="region-chip">🇺🇸 US</span>
+      </div>
+      <p class="highlight-desc">Standing on the shoulders of giants, I pulled from our awesome regional KPI Dashboards (AU/UK/US) and from multiple live data dashboards to create the Dabble Day Dashboard. The dashboard is still live if you want to relive the memory of an awesome day, or to peek back into the glossary for a refresher on our revenue waterfall!</p>
+      <div class="link-row">
+        <a class="link-pill" href="https://ap-southeast-2.quicksight.aws.amazon.com/sn/account/dabble-production/dashboards/a34c10f7-3c46-4439-a719-6674b4a18f3a" target="_blank" rel="noopener"><span class="link-icon">🔗</span>Dabble Day Dashboard</a>
+      </div>
+    </div>
+    <div class="page-number">04</div>
+  </section>
+
+  <!-- SLIDE 5: BRETT HIGHLIGHT -->
+  <section class="slide highlight-slide">
+    <div class="logo-mark"><img src="GL.png" alt="Dabble logo">DABBLE</div>
+    <div class="highlight-watermark">🎰</div>
+    <div class="slide-body-center">
+      <div class="highlight-header">
+        <div class="person-photo-wrap">
+          <div class="person-photo-fallback">🎰</div>
+          <img src="brett.png" alt="Brett" onerror="this.style.opacity=0">
+        </div>
+        <div class="name-block">
+          <h1 class="title">Brett: UK iGaming Reporting</h1>
+          <p class="person-role">UK</p>
+        </div>
+      </div>
+      <span class="person-tag">P1</span>
+      <div class="region-chip-row">
+        <span class="region-chip">🇬🇧 UK</span>
+      </div>
+      <p class="highlight-desc">iGaming was the main focus of July, building new data warehouse tables that let the team easily query data similar to what we have with our standard betting. This now powers the new All Gaming Metrics dashboard, as well as having casino metrics available in other dashboards. Another key change was made to UK KPI Metrics, giving users the ability to filter key betting metrics between Sportsbook and Casino, or having them combined.</p>
+      <div class="link-row">
+        <a class="link-pill" href="https://ap-southeast-2.quicksight.aws.amazon.com/sn/account/dabble-production/accounts/964721067554/dashboards/d0f1d830-41bd-454a-8cfd-72eb8d69c993" target="_blank" rel="noopener"><span class="link-icon">🔗</span>All Gaming Metrics</a>
+        <a class="link-pill" href="https://ap-southeast-2.quicksight.aws.amazon.com/sn/account/dabble-production/accounts/964721067554/dashboards/f9db4885-b9d4-47a4-a762-9c13b3490c0b" target="_blank" rel="noopener"><span class="link-icon">🔗</span>UK KPI Metrics</a>
+      </div>
+    </div>
+    <div class="page-number">05</div>
+  </section>
+
+  <!-- SLIDE 6: KUDZAI HIGHLIGHT -->
+  <section class="slide highlight-slide">
+    <div class="logo-mark"><img src="GL.png" alt="Dabble logo">DABBLE</div>
+    <div class="highlight-watermark">🌍</div>
+    <div class="slide-body-center">
+      <div class="highlight-header">
+        <div class="person-photo-wrap">
+          <div class="person-photo-fallback">🚫</div>
+          <img src="kudzai.png" alt="Kudzai" onerror="this.style.opacity=0">
+        </div>
+        <div class="name-block">
+          <h1 class="title">Kudzai: Global Betting Errors Dashboard</h1>
+          <p class="person-role">AU, UK &amp; US</p>
+        </div>
+      </div>
+      <span class="person-tag">Featured</span>
+      <div class="region-chip-row">
+        <span class="region-chip">🇦🇺 AU</span>
+        <span class="region-chip">🇬🇧 UK</span>
+        <span class="region-chip">🇺🇸 US</span>
+      </div>
+      <p class="highlight-desc">Built a new cross-region error monitoring dashboard, bringing together bet rejection data from Grafana/Victoria Metrics with actual bet placement volumes from source Postgres, giving the team a single reliable view of error rates across AU, UK and US for the first time. Along the way, reconciled a long-standing discrepancy between reported "bets placed" figures and warehouse data, tracing the gap back to specific rejection categories (fixture closed, market closed) that were being folded into the headline placement numbers. The dashboard breaks down error rates by region, by day (to track whether recent fixes are working), and by copied vs original bets, surfacing that copied bets currently fail at a notably higher rate than original ones. Also added a bet-type breakdown, which uncovered a data quality gap worth flagging: the majority of error events aren't currently tagged with a bet type at all, limiting how far that dimension can be sliced today.</p>
+      <div class="link-row">
+        <a class="link-pill" href="https://ap-southeast-2.quicksight.aws.amazon.com/sn/account/dabble-production/accounts/964721067554/dashboards/47aa2fec-7cc5-42d7-a5c4-0e951ff7e59a" target="_blank" rel="noopener"><span class="link-icon">🔗</span>Global Betting Errors Dashboard</a>
+      </div>
+    </div>
+    <div class="page-number">06</div>
+  </section>
+
+  <!-- SLIDE 7: STRATEGY -->
   <section class="slide">
     <div class="logo-mark"><img src="GL.png" alt="Dabble logo">DABBLE</div>
     <div class="slide-body-center">
@@ -896,25 +1069,25 @@
         <div class="strategy-panel">
           <h3>This Month</h3>
           <ul>
-            <li>Started engaging with vendors to understand the self-serve analytics space, as we think about the future of reporting at Dabble.</li>
-            <li>Kicked off our migration from Asana to Jira, to better align our planning with Data Engineering and Data Modelling.</li>
-            <li>Built a Claude skill for querying our warehouse via the Databricks MCP connector, giving us and users across the business a smarter way to query and interact with our data.</li>
+            <li>Started engaging with vendors to explore the future of self-service analytics at Dabble, and understand what's available as we evolve our reporting capabilities.</li>
+            <li>Kicked off our migration from Asana to Jira, to better align planning across BI, Data Engineering and Data Modelling.</li>
+            <li>Built a Claude skill using the Databricks MCP connector, giving both the BI team and users across the business a smarter way to query and interact with our data warehouse.</li>
           </ul>
         </div>
         <div class="strategy-panel">
           <h3>Coming Up in August</h3>
           <ul>
-            <li>Continuing our reporting audit.</li>
-            <li>Starting work on validating our core commercial metrics, making sure the numbers the business relies on are accurate and consistent.</li>
+            <li>Continuing our reporting audit and beginning work to validate our core commercial metrics, ensuring the numbers the business relies on are accurate, consistent and trusted.</li>
             <li>More to come!</li>
           </ul>
         </div>
       </div>
+      <p style="font-size:13px; opacity:0.7; margin-top:20px;">Strategy update compiled by Madi.</p>
     </div>
-    <div class="page-number">04</div>
+    <div class="page-number">07</div>
   </section>
 
-  <!-- SLIDE 5: BI TEAM SPOTLIGHT (MERGED) -->
+  <!-- SLIDE 8: BI TEAM SPOTLIGHT (MERGED) -->
   <section class="slide">
     <div class="logo-mark"><img src="GL.png" alt="Dabble logo">DABBLE</div>
     <div class="kudzai-spotlight-body">
@@ -940,10 +1113,10 @@
         </div>
       </div>
     </div>
-    <div class="page-number">05</div>
+    <div class="page-number">08</div>
   </section>
 
-  <!-- SLIDE 6: HOW TO WORK WITH US -->
+  <!-- SLIDE 9: HOW TO WORK WITH US -->
   <section class="slide">
     <div class="logo-mark"><img src="GL.png" alt="Dabble logo">DABBLE</div>
     <h1 class="title">How To Work With BI</h1>
@@ -965,10 +1138,10 @@
         <p>Early conversations beat late surprises: talk to us before things are on fire.</p>
       </div>
     </div>
-    <div class="page-number">06</div>
+    <div class="page-number">09</div>
   </section>
 
-  <!-- SLIDE 7: CLOSING -->
+  <!-- SLIDE 10: CLOSING -->
   <section class="slide closing-center">
     <div class="logo-mark"><img src="GL.png" alt="Dabble logo">DABBLE</div>
     <h1 class="title" style="text-align:center;">Thank You</h1>
@@ -978,7 +1151,7 @@
       <p>Continuing the reporting audit, kicking off work to validate our core commercial metrics, and another BI Team Member Spotlight. See you then.</p>
     </div>
     <p style="opacity:0.7; margin-top:20px;">BI • Data Insights • July 2026</p>
-    <div class="page-number">07</div>
+    <div class="page-number">10</div>
   </section>
 
 </div>
