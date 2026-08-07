@@ -350,6 +350,7 @@
     display: flex;
     align-items: center;
     gap: 22px;
+    margin-top: 18px;
     margin-bottom: 22px;
   }
 
@@ -450,6 +451,36 @@
 
   .link-pill .link-icon {
     font-size: 14px;
+  }
+
+  .strategy-credit {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .strategy-credit-photo {
+    width: 52px;
+    height: 52px;
+    border-width: 2px;
+  }
+
+  .strategy-credit-photo .person-photo-fallback {
+    font-size: 22px;
+  }
+
+  .strategy-credit-name {
+    font-size: 15px;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .strategy-credit-role {
+    font-size: 12px;
+    color: var(--yellow);
+    opacity: 0.9;
+    margin: 2px 0 0 0;
   }
 
   /* ---------- Spotlight Slide ---------- */
@@ -1051,7 +1082,7 @@
         <span class="region-chip">🇬🇧 UK</span>
         <span class="region-chip">🇺🇸 US</span>
       </div>
-      <p class="highlight-desc">Built a new cross-region error monitoring dashboard, bringing together bet rejection data from Grafana/Victoria Metrics with actual bet placement volumes from source Postgres, giving the team a single reliable view of error rates across AU, UK and US for the first time. Along the way, reconciled a long-standing discrepancy between reported "bets placed" figures and warehouse data, tracing the gap back to specific rejection categories (fixture closed, market closed) that were being folded into the headline placement numbers. The dashboard breaks down error rates by region, by day (to track whether recent fixes are working), and by copied vs original bets, surfacing that copied bets currently fail at a notably higher rate than original ones. Also added a bet-type breakdown, which uncovered a data quality gap worth flagging: the majority of error events aren't currently tagged with a bet type at all, limiting how far that dimension can be sliced today.</p>
+      <p class="highlight-desc">Built a new cross-region error monitoring dashboard, bringing together bet rejection data from Victoria Metrics with actual bet placement volumes, giving the team a single reliable view of error rates across AU, UK and US for the first time. Along the way, reconciled a long-standing discrepancy between reported "bets placed" figures and warehouse data, tracing the gap back to specific rejection categories (fixture closed, market closed) that were being folded into the headline placement numbers. The dashboard breaks down error rates by region, by day (would be helpful to track whether recent fixes are working), and by bet type. Future work will include using Amplitude data to see whether most rejections are from copied bets, who they were copied from, and more.</p>
       <div class="link-row">
         <a class="link-pill" href="https://ap-southeast-2.quicksight.aws.amazon.com/sn/account/dabble-production/accounts/964721067554/dashboards/47aa2fec-7cc5-42d7-a5c4-0e951ff7e59a" target="_blank" rel="noopener"><span class="link-icon">🔗</span>Global Betting Errors Dashboard</a>
       </div>
@@ -1082,7 +1113,16 @@
           </ul>
         </div>
       </div>
-      <p style="font-size:13px; opacity:0.7; margin-top:20px;">Strategy update compiled by Madi.</p>
+      <div class="strategy-credit">
+        <div class="person-photo-wrap strategy-credit-photo">
+          <div class="person-photo-fallback">🧭</div>
+          <img src="madi.png" alt="Madi" onerror="this.style.opacity=0">
+        </div>
+        <div>
+          <p class="strategy-credit-name">Madi</p>
+          <p class="strategy-credit-role">BI Lead, owns everything strategy</p>
+        </div>
+      </div>
     </div>
     <div class="page-number">07</div>
   </section>
@@ -1104,11 +1144,11 @@
           </div>
           <div>
             <h3>BI Superpower</h3>
-            <p>Sheer throughput, touching Compliance/RSG, Marketing and Operations across AU, US and UK. If it touched three regions and needed doing fast, it probably has Kudzai's name on it.</p>
+            <p>Solving messy mismatched data puzzles and turning the fix into something reusable. If it touched three regions and needed doing fast, it probably has Kudzai's name on it.</p>
           </div>
           <div>
             <h3>Interested In</h3>
-            <p>Turning "please just fix the false positives" into an actual root-cause fix instead of a patch. Ask about the SMSF/corporate trustee account handling if you want to see the enthusiasm in person.</p>
+            <p>How data can be used to measure whether campaigns, compliance processes and product features are actually working, and building systems that make that measurement trustworthy.</p>
           </div>
         </div>
       </div>
