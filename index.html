@@ -453,35 +453,6 @@
     font-size: 14px;
   }
 
-  .strategy-credit {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-top: 24px;
-  }
-
-  .strategy-credit-photo {
-    width: 52px;
-    height: 52px;
-    border-width: 2px;
-  }
-
-  .strategy-credit-photo .person-photo-fallback {
-    font-size: 22px;
-  }
-
-  .strategy-credit-name {
-    font-size: 15px;
-    font-weight: 800;
-    margin: 0;
-  }
-
-  .strategy-credit-role {
-    font-size: 12px;
-    color: var(--yellow);
-    opacity: 0.9;
-    margin: 2px 0 0 0;
-  }
 
   /* ---------- Spotlight Slide ---------- */
   .spotlight-grid {
@@ -1091,10 +1062,20 @@
   </section>
 
   <!-- SLIDE 7: STRATEGY -->
-  <section class="slide">
+  <section class="slide highlight-slide">
     <div class="logo-mark"><img src="GL.png" alt="Dabble logo">DABBLE</div>
+    <div class="highlight-watermark">🧭</div>
     <div class="slide-body-center">
-      <h1 class="title">Strategy Update</h1>
+      <div class="highlight-header">
+        <div class="person-photo-wrap">
+          <div class="person-photo-fallback">🧭</div>
+          <img src="madi.png" alt="Madi" onerror="this.style.opacity=0">
+        </div>
+        <div class="name-block">
+          <h1 class="title">Madi: Strategy Update</h1>
+          <p class="person-role">BI Lead</p>
+        </div>
+      </div>
       <h2 class="subtitle">July was a big month for BI initiatives</h2>
       <div class="strategy-columns">
         <div class="strategy-panel">
@@ -1111,16 +1092,6 @@
             <li>Continuing our reporting audit and beginning work to validate our core commercial metrics, ensuring the numbers the business relies on are accurate, consistent and trusted.</li>
             <li>More to come!</li>
           </ul>
-        </div>
-      </div>
-      <div class="strategy-credit">
-        <div class="person-photo-wrap strategy-credit-photo">
-          <div class="person-photo-fallback">🧭</div>
-          <img src="madi.png" alt="Madi" onerror="this.style.opacity=0">
-        </div>
-        <div>
-          <p class="strategy-credit-name">Madi</p>
-          <p class="strategy-credit-role">BI Lead, owns everything strategy</p>
         </div>
       </div>
     </div>
